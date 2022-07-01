@@ -18,4 +18,30 @@
    }
    ```
    通过父类Proxy的构造方法，保存了创建代理对象过程中传进来的InvocationHandler的实例，使用protected修饰保证了它可以在子类中被访问和使用。但是同时，因为java是单继承的，**因此在继承了Proxy后，只能通过实现目标接口的方式来实现方法的扩展**，达到我们增强目标方法逻辑的目的。
-4. 
+4. $Proxy0$
+```java
+public final class $Proxy0 extends Proxy implements Worker{
+    public $Proxy0(InvocationHandler invocationhandler){
+        super(invocationhandler);
+    }    
+
+    public final void work(){
+        try{
+            super.h.invoke(this, m3, null);
+            return;
+        }catch(Error _ex) { }
+        catch(Throwable throwable){
+            throw new UndeclaredThrowableException(throwable);
+        }
+    }
+    private static Method m3;
+    static {
+        //try{
+            m3 = Class.forName("com.hydra.test.Worker").getMethod("work", new Class[0]);
+            //省略其他Method
+        //}// 省略catch
+    }
+} 
+   
+```
+5. 
