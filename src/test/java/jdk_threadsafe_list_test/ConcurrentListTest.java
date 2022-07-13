@@ -7,13 +7,16 @@ import java.util.Vector;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ConcurrentListTest {
-    public static void main(String[] args) {
-        testVectorByRead();
-        testSynchronizedListByRead();
-        testCopyOnWriteArrayListByRead();
-        testVectorByWrite();
-        testSynchronizedListByWrite();
-        testCopyOnWriteArrayListByWrite();
+    public void main(String[] args) {
+//        testVectorByRead();
+//        testSynchronizedListByRead();
+//        testCopyOnWriteArrayListByRead();
+//        testVectorByWrite();
+//        testSynchronizedListByWrite();
+//        testCopyOnWriteArrayListByWrite();
+        testRsh();
+
+
     }
 
     public static void testVectorByRead(){
@@ -78,4 +81,27 @@ public class ConcurrentListTest {
         long time2 = System.currentTimeMillis();
         System.out.println("copyOnWriteArrayList: "+(time2-time1));
     }
+
+    /**
+     * 测试 有/无符号右移
+     */
+    public static void testRsh(){
+        int a = -100;
+        //测试无符号右移
+        System.out.println(a >>> 4);
+        //测试有符号右移
+        //操作	            二进制	                               对应十进制
+        //原码	            10000000 00000000 00000000 01100100	   -100
+        //转换为补码	        11111111 11111111 11111111 10011100	   -100
+        //右移4位，高位补1	    11111111 11111111 11111111 11111001
+        //保留符号位，按位取反	10000000 00000000 00000000 00000110
+        //加1后转为源码	    10000000 00000000 00000000 00000111	    -7
+        System.out.println(a >> 4);
+
+    }
+
+    class A{
+        final int a = 0;
+    }
+
 }
